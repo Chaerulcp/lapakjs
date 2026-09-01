@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ArrowRight, Flame, Leaf, MapPin, ShoppingBag, Sun } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { formatRupiah, formatTanggal, imageUrl } from "@/lib/format";
+import { SITE } from "@/lib/site";
 import ProductCard from "@/components/site/ProductCard";
 import RatingStars from "@/components/site/RatingStars";
 import { Button } from "@/components/ui/button";
@@ -11,18 +12,18 @@ import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
   title: "Beranda",
-  description:
-    "Sambal rumahan asli buatan Mama Ana — pedasnya bikin nagih. Tanpa pengawet, segar setiap hari, dikirim ke seluruh Indonesia.",
+  description: SITE.description,
 };
 
+// Teks berjalan (marquee). Sesuaikan dengan keunggulan tokomu sendiri.
 const TICKER_WORDS = [
-  "PEDAS NAMPOL",
-  "TANPA PENGAWET",
-  "SEGAR SETIAP HARI",
-  "BUATAN RUMAHAN",
-  "CABAI PILIHAN",
-  "RESEP WARISAN",
+  "PRODUK BERKUALITAS",
+  "HARGA TERJANGKAU",
+  "STOK SELALU UPDATE",
+  "BAYAR MUDAH & AMAN",
   "KIRIM SE-INDONESIA",
+  "DIPERCAYA PELANGGAN",
+  "GARANSI ORIGINAL",
 ];
 
 export default async function HomePage() {
@@ -59,16 +60,16 @@ export default async function HomePage() {
           <div className="relative">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-chili-200 bg-chili-50 px-3 py-1 text-xs font-semibold text-chili-700">
               <Flame className="size-3.5" />
-              Sambal rumahan asli, dibuat segar setiap hari
+              Produk pilihan, kualitas terjaga setiap hari
             </span>
             <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              Pedasnya
+              Belanja Mudah,
               <br />
-              <span className="text-chili-600">Bikin Nagih</span> 🌶️
+              <span className="text-chili-600">Harga Bersahabat</span> {SITE.emoji}
             </h1>
             <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Sambal bawang, terasi, ijo, dan cumi dari dapur Mama Ana. Cabai pilihan, tanpa
-              pengawet, digoreng segar setiap pagi — sekali coba, pasti nambah.
+              Temukan berbagai produk pilihan dengan kualitas terbaik. Pesan online,
+              bayar mudah, dan terima langsung di depan pintu rumahmu.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" className="h-12 bg-chili-600 px-7 text-base hover:bg-chili-700">
@@ -91,12 +92,12 @@ export default async function HomePage() {
                 <strong className="font-mono text-lg font-bold text-ink tabular-nums">
                   {products.length}
                 </strong>{" "}
-                varian sambal
+                produk tersedia
               </span>
               <Separator orientation="vertical" className="h-8" />
               <span>
                 <strong className="font-mono text-lg font-bold text-ink tabular-nums">100%</strong>{" "}
-                bahan segar
+                original & terpercaya
               </span>
               <Separator orientation="vertical" className="hidden h-8 sm:block" />
               <span className="hidden items-center gap-1.5 sm:flex">
@@ -166,23 +167,23 @@ export default async function HomePage() {
           {[
             {
               icon: Flame,
-              judul: "Pedas Nampol",
-              isi: "Cabai rawit merah pilihan, level pedasnya jujur.",
+              judul: "Kualitas Terjamin",
+              isi: "Semua produk melewati pemeriksaan kualitas sebelum dikirim.",
             },
             {
               icon: Leaf,
-              judul: "Tanpa Pengawet",
-              isi: "Bahan dapur asli, tanpa pewarna dan pengawet.",
+              judul: "Aman & Terpercaya",
+              isi: "Transaksi aman, data pribadimu selalu terlindungi.",
             },
             {
               icon: Sun,
-              judul: "Segar Setiap Hari",
-              isi: "Digoreng setiap pagi, dikirim di hari yang sama.",
+              judul: "Proses Cepat",
+              isi: "Pesanan diproses di hari yang sama, dikirim secepat mungkin.",
             },
             {
               icon: ShoppingBag,
-              judul: "Buatan Rumahan",
-              isi: "Resep warisan keluarga dari dapur Mama Ana.",
+              judul: "Belanja Mudah",
+              isi: "Tambahkan ke keranjang, checkout dalam hitungan menit.",
             },
           ].map((item) => {
             const Icon = item.icon;
@@ -231,7 +232,7 @@ export default async function HomePage() {
             </div>
           ) : (
             <p className="mt-8 rounded-2xl border border-dashed border-border bg-card p-10 text-center text-muted-foreground">
-              Katalog sedang disiapkan. Cek lagi sebentar lagi ya! 🌶️
+              Katalog sedang disiapkan. Cek lagi sebentar lagi ya! {SITE.emoji}
             </p>
           )}
         </div>
@@ -271,7 +272,7 @@ export default async function HomePage() {
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-wider text-chili-600">
-                  Dari dapur kami
+                  Dari kami
                 </p>
                 <h2 className="mt-1 font-display text-3xl font-extrabold tracking-tight text-ink">
                   Konten Terbaru
@@ -328,11 +329,11 @@ export default async function HomePage() {
             className="pointer-events-none absolute -bottom-20 -right-10 size-72 rounded-full bg-mango-400/20 blur-3xl"
           />
           <h2 className="relative font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-            Siap mencicipi pedasnya? 🌶️
+            Siap mulai belanja? {SITE.emoji}
           </h2>
           <p className="relative mx-auto mt-3 max-w-xl text-chili-100">
-            Pesan sekarang sebelum jam 14.00 dan sambalmu dikirim hari itu juga. Awas, bisa bikin
-            nambah nasi!
+            Pesan sekarang sebelum jam 14.00 dan pesananmu diproses hari itu juga.
+            Stok terbatas — jangan sampai kehabisan!
           </p>
           <div className="relative mt-7 flex justify-center">
             <Button asChild size="lg" className="h-12 bg-mango-500 px-8 text-base text-ink hover:bg-mango-400">

@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { sendMail, emailLayout } from "@/lib/mailer";
+import { SITE } from "@/lib/site";
 import { ACTIVITY_TYPES, logActivity } from "@/lib/activity";
 
 function appUrl(): string {
@@ -52,7 +53,7 @@ export async function POST(req: Request) {
   const link = `${appUrl()}/verify-email?token=${token}&email=${encodeURIComponent(email)}`;
   const sent = await sendMail(
     email,
-    "Tautan verifikasi baru — Sambal Mama Ana 🌶️",
+    `Tautan verifikasi baru — ${SITE.name} ${SITE.emoji}`,
     emailLayout(
       "Tautan Verifikasi Baru",
       `<p>Halo <strong>${user.nama}</strong>,</p>

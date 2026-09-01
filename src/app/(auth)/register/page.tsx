@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { RegisterForm } from "./register-form";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Daftar",
-  description: "Buat akun Sambal Mama Ana untuk mulai belanja sambal rumahan asli.",
+  description: `Buat akun ${SITE.name} untuk mulai belanja produk pilihan berkualitas.`,
 };
 
 export default function RegisterPage() {

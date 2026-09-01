@@ -5,12 +5,13 @@ import { ChevronRight, Package } from "lucide-react";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/db";
 import { formatRupiah, formatTanggal } from "@/lib/format";
+import { SITE } from "@/lib/site";
 import { metodeLabel, OrderStatusBadge, PaymentStatusBadge } from "@/components/site/StatusBadge";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Pesanan Saya",
-  description: "Daftar pesananmu di Sambal Mama Ana.",
+  description: `Daftar pesananmu di ${SITE.name}.`,
 };
 
 export default async function PesananPage() {

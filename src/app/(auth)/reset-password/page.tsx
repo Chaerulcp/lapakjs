@@ -8,10 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Atur Ulang Password",
-  description: "Buat password baru untuk akun Sambal Mama Ana kamu.",
+  description: `Buat password baru untuk akun ${SITE.name} kamu.`,
 };
 
 export default async function ResetPasswordPage({

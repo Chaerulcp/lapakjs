@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { SITE } from "@/lib/site";
 
 /**
  * Layout split-screen untuk semua halaman autentikasi:
- * kiri = panel brand Sambal Mama Ana, kanan = formulir.
+ * kiri = panel brand (dari src/lib/site.ts), kanan = formulir.
  */
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -22,26 +23,26 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           href="/"
           className="relative z-10 inline-flex items-center gap-2 font-display text-xl font-bold"
         >
-          <span aria-hidden>🌶️</span> Sambal Mama Ana
+          <span aria-hidden>{SITE.emoji}</span> {SITE.name}
         </Link>
 
         <div className="relative z-10 max-w-md">
           <p className="font-display text-4xl font-extrabold leading-tight xl:text-5xl">
-            Pedasnya Bikin Nagih.
+            {SITE.tagline}.
           </p>
           <p className="mt-4 text-white/80">
-            Sambal rumahan tanpa pengawet, digoreng segar setiap hari. Masuk untuk
-            belanja, pantau pesananmu, dan nikmati harga khusus reseller.
+            Belanja lebih nyaman dengan akun: pantau status pesananmu, kelola alamat
+            pengiriman, dan nikmati harga khusus reseller.
           </p>
           <ul className="mt-8 space-y-3 text-sm text-white/90">
-            <li>✅ 100% bahan segar, tanpa pengawet</li>
+            <li>✅ Produk berkualitas & original</li>
             <li>✅ Dikirim ke seluruh Indonesia</li>
             <li>✅ Harga khusus untuk reseller</li>
           </ul>
         </div>
 
         <p className="relative z-10 text-sm italic text-white/60">
-          “Sekali coba sambal Mama Ana, nasi sebakul pun kurang.” — pelanggan setia
+          “Pelayanannya cepat dan produknya berkualitas.” — pelanggan setia
         </p>
       </aside>
 
@@ -52,7 +53,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             href="/"
             className="inline-flex items-center gap-2 font-display text-lg font-bold text-chili-700"
           >
-            <span aria-hidden>🌶️</span> Sambal Mama Ana
+            <span aria-hidden>{SITE.emoji}</span> {SITE.name}
           </Link>
           <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">
             ← Beranda
@@ -64,7 +65,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         <footer className="p-6 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Sambal Mama Ana — Pedasnya Bikin Nagih
+          © {new Date().getFullYear()} {SITE.name} — {SITE.tagline}
         </footer>
       </main>
     </div>

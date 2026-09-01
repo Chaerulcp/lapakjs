@@ -18,6 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { SITE } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Kelola Produk" };
@@ -57,7 +58,7 @@ export default async function AdminProdukPage({
     <>
       <PageHeader
         title="Produk"
-        description={`${total} produk di katalog Sambal Mama Ana.`}
+        description={`${total} produk di katalog ${SITE.name}.`}
         actions={
           <ProductFormDialog
             trigger={

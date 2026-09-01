@@ -102,8 +102,8 @@ export function ContentFormDialog({
               required
               minLength={2}
               maxLength={100}
-              defaultValue={initial?.penulis ?? "Mama Ana"}
-              placeholder="mis. Mama Ana"
+              defaultValue={initial?.penulis ?? "Admin"}
+              placeholder="mis. Admin Toko"
             />
           </div>
 

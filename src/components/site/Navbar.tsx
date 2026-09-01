@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { logoutAction } from "@/app/(site)/actions";
+import { SITE } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export type NavbarUser = {
@@ -73,14 +74,14 @@ export default function Navbar({ user, cartCount }: NavbarProps) {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-3 px-4">
         <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
           <span className="flex size-9 items-center justify-center rounded-xl bg-chili-600 text-lg shadow-sm">
-            🌶️
+            {SITE.emoji}
           </span>
           <span className="leading-tight">
             <span className="block font-display text-base font-bold tracking-tight text-ink">
-              Sambal Mama Ana
+              {SITE.name}
             </span>
             <span className="hidden text-[11px] font-medium text-muted-foreground sm:block">
-              Pedasnya Bikin Nagih
+              {SITE.tagline}
             </span>
           </span>
         </Link>
@@ -166,7 +167,9 @@ export default function Navbar({ user, cartCount }: NavbarProps) {
             </SheetTrigger>
             <SheetContent side="right" className="flex w-72 flex-col bg-paper">
               <SheetHeader>
-                <SheetTitle className="font-display text-left">🌶️ Sambal Mama Ana</SheetTitle>
+                <SheetTitle className="font-display text-left">
+                  {SITE.emoji} {SITE.name}
+                </SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-1 px-4">
                 {links.map((link) => (

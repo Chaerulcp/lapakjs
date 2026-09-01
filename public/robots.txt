@@ -1,5 +1,5 @@
-# robots.txt — Sambal Mama Ana
-# CATATAN: sesuaikan domain sitemap dengan domain produksi.
+# robots.txt — LapakJS
+# CATATAN: ganti domain sitemap di bawah dengan domain produksi tokomu.
 
 User-agent: *
 Allow: /
@@ -15,4 +15,4 @@ Disallow: /keranjang
 Disallow: /checkout
 Disallow: /pesanan
 
-Sitemap: https://www.sambalmamaana.com/sitemap.xml
+Sitemap: https://example.com/sitemap.xml

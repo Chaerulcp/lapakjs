@@ -1,20 +1,18 @@
 <div align="center">
 
-# 🌶️ Sambal Mama Ana
+# 🛍️ LapakJS
 
-**Toko online resmi Sambal Mama Ana — sambal rumahan asli, dibuat dengan cinta.**
+**Template toko online open-source berbasis Next.js — bisa dikustomisasi untuk usaha kecil maupun besar.**
 
-Sambal Bawang · Sambal Terasi · Sambal Ijo · Sambal Cumi
+Satu codebase, siap jadi toko onlinemu sendiri: katalog produk, keranjang, checkout dengan verifikasi transfer bank, hingga panel admin lengkap.
 
-![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
-![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?logo=prisma)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?logo=tailwindcss)
-
-Website e-commerce full-stack hasil migrasi penuh dari versi PHP lama ke **Next.js App Router** — lengkap dengan katalog produk, keranjang & checkout, konfirmasi pembayaran manual, konten/blog, program reseller, dan panel admin.
-
-[Fitur](#fitur-utama) · [Tech Stack](#tech-stack) · [Instalasi](#instalasi) · [Struktur](#struktur-proyek) · [Deployment](#catatan-deployment)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-61dafb?logo=react)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Prisma](https://img.shields.io/badge/Prisma-ORM-2d3748?logo=prisma&logoColor=white)](https://www.prisma.io)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479a1?logo=mysql&logoColor=white)](https://www.mysql.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 </div>
 
@@ -22,182 +20,200 @@ Website e-commerce full-stack hasil migrasi penuh dari versi PHP lama ke **Next.
 
 ## ✨ Tentang Proyek
 
-**Sambal Mama Ana** adalah toko sambal rumahan yang menjual varian sambal bawang, terasi, ijo, dan cumi. Proyek ini merupakan **rebuild penuh** dari aplikasi PHP legacy menjadi satu aplikasi **Next.js full-stack** yang modern, ter-tipe penuh, dan siap produksi.
+**LapakJS** adalah starter kit e-commerce full-stack yang lahir dari proyek nyata: toko online **Sambal Mama Ana**, hasil rebuild penuh dari aplikasi PHP legacy menjadi satu aplikasi Next.js modern yang ter-tipe penuh. Karena dibangun untuk toko sungguhan, setiap fiturnya sudah teruji untuk kebutuhan jualan sehari-hari — bukan sekadar demo.
 
-Data lama (produk, pengguna, konten) dipertahankan melalui skema Prisma yang dipetakan ke struktur database MySQL warisan, sehingga riwayat pesanan dan akun pelanggan tetap utuh setelah migrasi.
+Kini LapakJS di-open-source-kan agar siapa pun — UMKM, reseller, hingga bisnis besar — bisa punya toko online sendiri dengan cepat:
 
-## Fitur Utama
+1. **Clone** repo ini,
+2. **Ubah satu file** (`src/lib/site.ts`) untuk mengganti nama & identitas toko,
+3. **Jalankan** — tokomu siap menerima pesanan.
 
-### 🛍️ Toko (publik)
-- **Katalog produk** — kategori, pencarian, harga pelanggan & harga khusus reseller, dan indikator stok.
-- **Detail produk** — deskripsi, galeri, kadar pedas (*chili meter*), dan tombol tambah ke keranjang.
-- **Keranjang belanja** — tersimpan di cookie server-side, tahan sesi, dengan penghitung total otomatis.
-- **Checkout** — pengiriman ke seluruh Indonesia dengan perhitungan ongkir.
-- **Konfirmasi pembayaran manual** — pelanggan unggah bukti transfer; admin memverifikasi.
-- **Pelacakan status pesanan** — menunggu → diproses → dikirim → selesai (atau dibatalkan).
-- **Konten/blog** — artikel, resep, dan cerita di balik sambal.
-- **Newsletter** — langganan email pelanggan.
+> 🌶️ *Fun fact: seluruh fitur di sini dipakai produksi oleh toko sambal rumahan sebelum dibuka untuk publik.*
 
-### 🔐 Autentikasi
-- **Registrasi + verifikasi email** (tautan sekali pakai) dan kirim ulang tautan.
-- **Login / logout** berbasis sesi JWT (NextAuth v5).
-- **Lupa & reset password** via email.
-- **Kompatibilitas password lama** — hash bcrypt versi PHP (`$2y$`) tetap berfungsi.
+## 🧰 Fitur Utama
 
-### 👑 Panel Admin (`/admin`)
-- **Dashboard** — statistik penjualan, ringkasan pesanan, dan grafik pendapatan (Recharts).
-- **Kelola produk** — tambah, ubah, hapus, dan unggah foto.
-- **Kelola pesanan** — detail pesanan dan ubah status.
-- **Verifikasi pembayaran** — tinjau bukti transfer, setujui/tolak.
-- **Kelola pengguna & konten** — manajemen akun pelanggan dan artikel.
-- **Log aktivitas** — jejak audit seluruh aksi admin.
+### Untuk Pembeli (Storefront)
+- 🗂️ **Katalog produk** dengan pencarian, filter kategori, dan paginasi
+- 🛒 **Keranjang belanja** (tersimpan di database, bukan cookie — sinkron lintas perangkat)
+- 💳 **Checkout dengan verifikasi transfer bank** — pembeli unggah bukti bayar, admin menyetujui
+- 📦 **Pelacakan status pesanan** (pending → paid → processing → shipped → done)
+- ⭐ **Ulasan & rating produk** dari pembeli terverifikasi
+- ✉️ **Verifikasi email & reset password** dengan tautan aman sekali pakai
+- 💰 **Harga khusus reseller** — otomatis tampil untuk akun ber-role `reseller`
 
-## Tech Stack
+### Untuk Penjual (Panel Admin)
+- 📊 **Dashboard** dengan ringkasan penjualan, pesanan terbaru, dan statistik
+- 🏷️ **CRUD produk** lengkap: harga normal & harga reseller, stok, kategori, upload foto
+- ✅ **Verifikasi pembayaran** pesanan masuk
+- 👥 **Manajemen pengguna & role** (admin / reseller / pelanggan)
+- 📝 **Manajemen konten** (artikel/cerita toko) dan **testimoni pelanggan**
+- 📈 **Log aktivitas** untuk audit trail
 
-| Kategori     | Teknologi                                                    |
-| ------------ | ------------------------------------------------------------ |
-| Framework    | Next.js 16 (App Router) + React 19                           |
-| Bahasa       | TypeScript 5                                                 |
-| Database     | MySQL 8 + Prisma ORM 6                                       |
-| Autentikasi  | NextAuth v5 (beta) + bcryptjs                                |
-| Styling      | Tailwind CSS v4 + shadcn/ui                                  |
-| Validasi     | Zod + React Hook Form                                        |
-| Grafik admin | Recharts                                                     |
-| Email        | Nodemailer (SMTP; fallback console di dev)                   |
-| Font         | Plus Jakarta Sans · Bricolage Grotesque · JetBrains Mono     |
+### Fondasi Teknis
+- 🔒 NextAuth v5, password di-hash dengan bcrypt, validasi Zod di setiap input
+- 🖼️ Optimasi gambar otomatis via `next/image` + Sharp
+- 🔍 SEO siap pakai: metadata dinamis, Open Graph, JSON-LD structured data
+- 🧩 UI konsisten dengan Tailwind CSS v4 + shadcn/ui
+- 🗄️ Skema Prisma yang kompatibel dengan struktur database MySQL warisan (legacy)
 
-## Prasyarat
+## 🧱 Teknologi
 
-- **Node.js** ≥ 20
-- **MySQL** 8.x (lokal via Laragon/XAMPP, atau server sendiri)
-- **npm**
+| Layer      | Teknologi                                    |
+| ---------- | -------------------------------------------- |
+| Framework  | Next.js 16 (App Router, Server Components)   |
+| Bahasa     | TypeScript (strict)                          |
+| Database   | MySQL / MariaDB                              |
+| ORM        | Prisma 6                                     |
+| Auth       | NextAuth v5 (beta) + bcrypt                  |
+| Styling    | Tailwind CSS v4 + shadcn/ui                  |
+| Email      | Nodemailer (fallback: console di mode dev)   |
+| Grafik     | Recharts (panel admin)                       |
 
-## Instalasi
+## 🚀 Memulai (Quick Start)
+
+### Prasyarat
+- Node.js 20+
+- MySQL / MariaDB (Laragon, XAMPP, Docker, atau cloud)
+
+### Langkah-langkah
 
 ```bash
-# 1. Pasang dependensi
+# 1. Clone repository
+git clone https://github.com/Chaerulcp/lapakjs.git
+cd lapakjs
+
+# 2. Pasang dependensi
 npm install
 
-# 2. Siapkan konfigurasi environment
-copy .env.example .env        # macOS/Linux: cp .env.example .env
-# lalu edit .env: isi DATABASE_URL dan generate AUTH_SECRET dengan `npx auth secret`
+# 3. Siapkan environment
+copy .env.example .env        # Linux/macOS: cp .env.example .env
 
-# 3. Buat & sinkronkan database
-npx prisma migrate dev        # membuat tabel dari schema Prisma
-# — atau, impor dump lama: buat database `sambal_mama_ana`,
-#   lalu impor database.sql via phpMyAdmin/CLI
+# 4. Buat database kosong bernama `lapakjs` di MySQL, lalu jalankan migrasi
+npx prisma migrate dev
 
-# 4. Generate Prisma Client
-npm run prisma:generate
-
-# 5. (Opsional) Seed data awal — membuat akun admin default
+# 5. Isi data awal (admin + produk & konten demo)
 npm run db:seed
 
-# 6. Jalankan mode pengembangan
+# 6. Jalankan di mode pengembangan
 npm run dev
 ```
 
-Buka **http://localhost:3000** — situs siap dipakai.
+Buka http://localhost:3000 — toko contoh sudah berisi produk demo dan siap dijelajahi.
 
-### Akun seed default
+### Login admin default (hasil seed)
 
-| Field    | Nilai                          |
-| -------- | ------------------------------ |
-| Email    | `admin@sambalmamaana.com`      |
-| Password | `MamaAna!2026`                 |
+| Field    | Nilai                     |
+| -------- | ------------------------- |
+| Email    | `admin@lapakjs.local`     |
+| Password | `LapakJS!2026`            |
 
-> **Catatan:** Seed memakai ulang akun admin lama bila sudah ada di database — password versi PHP lama tetap berfungsi berkat kompatibilitas bcrypt `$2y$`. Password `MamaAna!2026` hanya untuk pengujian lokal; **ganti sebelum produksi** lewat panel Pengguna atau langsung di database.
+> ⚠️ Ganti kredensial ini di produksi. Kamu bisa menimpanya lewat variabel `SEED_ADMIN_EMAIL` dan `SEED_ADMIN_PASSWORD` sebelum menjalankan seed.
 
-## Konfigurasi Environment
+## 🎨 Rebranding: Cara Menjadikannya Tokomu
 
-Salin `.env.example` menjadi `.env` lalu sesuaikan. Tabel di bawah merangkum setiap variabel.
+LapakJS dirancang agar bisa dikustomisasi **tanpa menyentuh banyak file**:
 
-| Variabel | Wajib | Keterangan |
-| -------- | :---: | ---------- |
-| `DATABASE_URL` | ✅ | Connection string MySQL untuk Prisma |
-| `AUTH_SECRET` | ✅ | Secret NextAuth — buat dengan `npx auth secret` |
-| `AUTH_TRUST_HOST` | ✅ | `true` (diperlukan di luar Vercel) |
-| `APP_URL` | — | Base URL untuk tautan di email (default `http://localhost:3000`) |
-| `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` / `SMTP_SECURE` | — | Kredensial SMTP. Jika kosong, email hanya dicetak ke console (mode dev) |
-| `MAIL_FROM` | — | Alamat pengirim email |
-| `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` | — | Override akun admin saat seeding |
+| Yang ingin diubah              | File yang diedit                          |
+| ------------------------------ | ----------------------------------------- |
+| Nama, tagline, kontak, ikon    | `src/lib/site.ts` ← **mulai dari sini**   |
+| Warna tema & palet brand       | `src/app/globals.css` (bagian `@theme`)   |
+| Produk & konten contoh         | `prisma/seed.cjs`                         |
+| Label kategori produk          | `src/components/site/ProductCard.tsx`     |
+| Domain sitemap                 | `public/robots.txt`                       |
+| Judul & deskripsi global (SEO) | otomatis mengikuti `src/lib/site.ts`      |
 
-## Scripts
+Contoh: ubah `name` di `src/lib/site.ts` menjadi `"Kopi Senja"`, ganti emoji jadi ☕, sesuaikan palet warna — dan seluruh navbar, footer, email, judul halaman, hingga panel admin langsung mengikuti.
 
-| Perintah | Keterangan |
-| -------- | ---------- |
-| `npm run dev` | Jalankan server pengembangan (http://localhost:3000) |
-| `npm run build` | Build produksi |
-| `npm start` | Jalankan server produksi |
-| `npm run lint` | Periksa gaya kode (ESLint) |
-| `npm run db:seed` | Seed database (admin + data awal) |
-| `npm run prisma:generate` | Generate Prisma Client |
-| `npm run prisma:migrate` | Jalankan migrasi skema (dev) |
-| `npm run prisma:studio` | Buka Prisma Studio (GUI database) |
+## 🔐 Variabel Environment
 
-## Alur Pesanan
+| Variabel              | Wajib | Keterangan                                              |
+| --------------------- | :---: | ------------------------------------------------------- |
+| `DATABASE_URL`        |  ✅   | URL koneksi MySQL (`mysql://user:pass@host:3306/db`)    |
+| `AUTH_SECRET`         |  ✅   | Secret NextAuth — buat dengan `npx auth secret`         |
+| `AUTH_TRUST_HOST`     |  ✅   | Set `true` saat deploy di belakang reverse proxy        |
+| `APP_URL`             |  ✅   | URL publik aplikasi (untuk tautan di email)             |
+| `SMTP_HOST/PORT/USER/PASS/SECURE` | — | Konfigurasi SMTP; jika kosong, email dicetak ke console |
+| `MAIL_FROM`           |   —   | Nama & alamat pengirim email                            |
+| `SEED_ADMIN_EMAIL`    |   —   | Email admin saat seeding                                |
+| `SEED_ADMIN_PASSWORD` |   —   | Password admin saat seeding                             |
 
-1. Pelanggan menambah produk ke **keranjang** (tersimpan di cookie server-side).
-2. Saat **checkout**, total dihitung ulang di server dan stok divalidasi.
-3. Pesanan dibuat dengan status **menunggu**; stok berkurang otomatis.
-4. Pelanggan **unggah bukti transfer** lewat halaman konfirmasi pembayaran.
-5. Admin meninjau bukti di **panel admin** lalu menyetujui/menolak.
-6. Setelah diverifikasi, pesanan beranjak ke status berikutnya hingga **selesai**.
+## 📜 Skrip npm
 
-## Struktur Proyek
+| Skrip                     | Fungsi                                        |
+| ------------------------- | --------------------------------------------- |
+| `npm run dev`             | Server pengembangan di http://localhost:3000  |
+| `npm run build`           | Build produksi                                |
+| `npm run start`           | Jalankan build produksi                       |
+| `npm run lint`            | Pemeriksaan ESLint                            |
+| `npm run db:seed`         | Seed admin + data demo (idempoten)            |
+| `npm run prisma:migrate`  | Jalankan migrasi skema                        |
+| `npm run prisma:studio`   | Buka Prisma Studio (GUI database)             |
+
+## 🗂️ Struktur Proyek
 
 ```
-prisma/                 # Skema database & seed
-public/uploads/         # Berkas unggahan (foto produk, bukti pembayaran)
-src/
-├── app/
-│   ├── (auth)/         # Halaman login, register, verifikasi, reset password
-│   ├── (site)/         # Situs publik: beranda, produk, konten, keranjang,
-│   │                   #   checkout, pesanan
-│   ├── admin/          # Panel admin
-│   ├── api/            # API routes (auth, pesanan, pembayaran)
-│   ├── icon.svg        # Ikon situs (favicon)
-│   ├── not-found.tsx   # Halaman 404
-│   └── sitemap.ts      # Sitemap dinamis (rute + produk + konten)
-├── components/
-│   ├── admin/          # Komponen panel admin
-│   ├── site/           # Komponen situs publik
-│   └── ui/             # Komponen dasar shadcn/ui
-├── lib/                # Utilitas: db, cart, mailer, uploads, format, activity
-└── auth.ts             # Konfigurasi NextAuth
+├── prisma/
+│   ├── schema.prisma      # Skema database (kompatibel DB legacy)
+│   └── seed.cjs           # Seed admin + data demo
+├── public/
+│   └── uploads/           # Berkas unggahan (foto produk, bukti bayar)
+├── src/
+│   ├── app/
+│   │   ├── (site)/        # Storefront: beranda, produk, keranjang, checkout, pesanan
+│   │   ├── (auth)/        # Login, register, verifikasi, reset password
+│   │   ├── admin/         # Panel admin (guard role di layout + server action)
+│   │   └── api/           # Route API (auth, unggahan, dsb.)
+│   ├── components/        # UI: site/, admin/, ui/ (shadcn)
+│   └── lib/               # Utilitas: site.ts (brand!), db, auth, mailer, format
+├── .env.example           # Contoh konfigurasi environment
+└── LICENSE                # MIT
 ```
 
-## SEO
+## ☁️ Deploy ke Produksi
 
-- `public/robots.txt` — mengizinkan crawling situs publik, memblokir `/admin`, `/api`, dan halaman privat (keranjang, checkout, akun).
-- `src/app/sitemap.ts` — menghasilkan sitemap dinamis dari database.
+1. **Database** — gunakan MySQL terkelola (RDS, PlanetScale, Aiven, dsb.) lalu jalankan `npx prisma migrate deploy`.
+2. **Hosting** — Vercel adalah target paling mudah:
+   ```bash
+   npx vercel --prod
+   ```
+   Set semua variabel environment dari `.env.example` di dashboard Vercel.
+3. **Penyimpanan berkas** — folder `public/uploads` tidak cocok untuk serverless jangka panjang; pindahkan unggahan ke object storage (S3/R2) atau gunakan penyimpanan disk pada VPS (Docker/PM2).
+4. **Email** — isi kredensial SMTP produksi agar verifikasi email & reset password terkirim sungguhan.
 
-## Catatan Upload
+## 🗺️ Roadmap
 
-Foto produk dan bukti pembayaran disimpan di `public/uploads/` (subfolder `products/` dan `payments/`). Nama berkas dipertahankan agar tautan lama tetap valid setelah migrasi.
+- [ ] Integrasi payment gateway (Midtrans/Xendit)
+- [ ] Kupon & diskon
+- [ ] Perhitungan ongkos kirim otomatis (RajaOngkir/Biteship)
+- [ ] Notifikasi WhatsApp/email saat status pesanan berubah
+- [ ] Dukungan multi-bahasa (i18n)
+- [ ] Mode katalog tanpa checkout (tombol langsung ke WhatsApp)
 
-## Catatan Deployment
+## 🤝 Kontribusi
 
-Sebelum menaikkan ke produksi:
+Kontribusi sangat diterima! Silakan:
 
-1. **Ganti kredensial admin** — setel ulang password admin lama, atau pakai `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD`.
-2. **Set `APP_URL`** sesuai domain asli (dipakai untuk tautan di email).
-3. **Konfigurasi SMTP nyata** (`SMTP_HOST`, dll.) agar email verifikasi & reset terkirim.
-4. **Domain di `robots.txt`** — ganti dengan domain produksi.
-5. **Pastikan `public/uploads/` dapat ditulis** oleh proses server di lingkungan produksi.
+1. Fork repo ini dan buat branch fitur (`git checkout -b feature/keren-banget`).
+2. Commit perubahanmu dengan pesan yang jelas (`git commit -m "feat: tambah kupon diskon"`).
+3. Push ke branch dan buka Pull Request.
 
-## Migrasi dari PHP Legacy
+Untuk perubahan besar, buka dulu Issue untuk berdiskusi agar sejalan dengan arah proyek.
 
-Versi PHP lama diarsipkan di tag Git **`v1.0-php-legacy`**; rebuild Next.js penuh ditandai **`v2.0-nextjs`**. Selama migrasi:
+## 📄 Lisensi
 
-- Beberapa gambar legacy berukuran 0-byte ditambal dengan salinan gambar valid (nama berkas dipertahankan).
-- Hash password lama (`$2y$`) dinormalisasi agar kompatibel dengan bcrypt.
-- Seed `is_verified` dikirim sebagai boolean (`true`), sesuai ekspektasi Prisma untuk kolom `TinyInt`.
+Didistribusikan di bawah **Lisensi MIT** — bebas dipakai untuk proyek pribadi, komersial, maupun klien. Lihat [LICENSE](./LICENSE) untuk detail lengkap.
+
+## 🙏 Kredit
+
+LapakJS dimulai sebagai rebuild dari toko **Sambal Mama Ana** (PHP legacy → Next.js). Terima kasih untuk semua yang sudah mencoba, melaporkan bug, dan memberi masukan.
 
 ---
 
 <div align="center">
 
-Dibuat dengan 🌶️ oleh tim Sambal Mama Ana
+**Suka dengan proyek ini? Beri ⭐ di repo ini agar lebih banyak orang menemukannya.**
+
+Dibuat dengan ❤️ oleh [chaerulcp](https://github.com/Chaerulcp) · Lisensi MIT
 
 </div>
+

@@ -4,12 +4,12 @@ import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { formatTanggal, imageUrl } from "@/lib/format";
+import { SITE } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Konten",
-  description:
-    "Cerita, resep, dan tips dari dapur Sambal Mama Ana — dari rahasia pedas sampai cara pesan.",
+  description: `Cerita, tips, dan panduan dari ${SITE.name} — dari cerita produk sampai cara pesan.`,
 };
 
 export default async function KontenPage() {
@@ -24,7 +24,7 @@ export default async function KontenPage() {
           Konten & Cerita
         </h1>
         <p className="mt-2 text-muted-foreground">
-          Rahasia dapur, cerita sambal, dan panduan belanja dari tim Mama Ana.
+          Cerita, tips, dan panduan belanja dari tim kami.
         </p>
       </div>
 
@@ -66,7 +66,7 @@ export default async function KontenPage() {
           <p className="text-4xl">📖</p>
           <h2 className="mt-3 font-display text-lg font-bold text-ink">Belum ada konten</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Cerita dari dapur Mama Ana sedang dimasak. Tunggu sebentar lagi ya!
+            Konten baru sedang disiapkan. Tunggu sebentar lagi ya!
           </p>
           <Button asChild variant="outline" className="mt-5">
             <Link href="/produk">Lihat Produk Dulu</Link>

@@ -17,14 +17,15 @@ function infoPembayaran(metode: string): string[] {
   switch (metode.toLowerCase()) {
     case "transfer":
       return [
-        "BCA 1234567890 a.n. Mama Ana",
-        "BNI 0987654321 a.n. Mama Ana",
-        "Mandiri 2468135790 a.n. Mama Ana",
+        // TODO: ganti dengan nomor rekening tokomu sendiri.
+        "BCA 1234567890 a.n. Pemilik Toko",
+        "BNI 0987654321 a.n. Pemilik Toko",
+        "Mandiri 2468135790 a.n. Pemilik Toko",
       ];
     case "qris":
       return ["Scan QRIS dengan aplikasi pembayaran apa pun (GoPay, OVO, Dana, m-banking)."];
     case "ewallet":
-      return ["Dana / OVO / GoPay / ShopeePay: 0812-3456-789 a.n. Mama Ana"];
+      return ["Dana / OVO / GoPay / ShopeePay: 0812-3456-789 a.n. Pemilik Toko"];
     default:
       return ["Hubungi kami untuk instruksi pembayaran."];
   }

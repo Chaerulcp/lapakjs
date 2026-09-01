@@ -26,6 +26,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { SITE } from "@/lib/site";
 
 export type AdminSidebarUser = {
   nama: string;
@@ -60,11 +61,11 @@ export function AdminSidebar({ user }: { user: AdminSidebarUser }) {
           className="flex items-center gap-2.5 rounded-lg px-2 py-1.5 transition-colors hover:bg-sidebar-accent"
         >
           <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-chili-600 text-lg shadow-sm">
-            🌶️
+            {SITE.emoji}
           </span>
           <span className="min-w-0 leading-tight">
             <span className="block truncate font-display text-sm font-bold tracking-tight">
-              Sambal Mama Ana
+              {SITE.name}
             </span>
             <span className="block text-[11px] font-medium text-muted-foreground">
               Panel Admin

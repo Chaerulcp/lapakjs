@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Search } from "lucide-react";
 import { prisma } from "@/lib/db";
+import { SITE } from "@/lib/site";
 import ProductCard, { kategoriLabel } from "@/components/site/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,8 +9,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Produk",
-  description:
-    "Katalog lengkap sambal Mama Ana: sambal bawang, terasi, ijo, cumi, dan paket hemat. Pedasnya bikin nagih.",
+  description: `Katalog lengkap produk ${SITE.name}. Temukan produk favoritmu dengan kualitas terbaik dan harga bersahabat.`,
 };
 
 type ProdukSearchParams = {
@@ -59,7 +59,7 @@ export default async function ProdukPage({
           Semua Produk
         </h1>
         <p className="mt-2 text-muted-foreground">
-          Pilih sambal favoritmu — semua dibuat segar hari ini, tanpa pengawet.
+          Pilih produk favoritmu — kualitas terjaga, harga bersahabat.
         </p>
       </div>
 
@@ -71,7 +71,7 @@ export default async function ProdukPage({
             type="search"
             name="q"
             defaultValue={cari}
-            placeholder="Cari sambal… (mis. bawang, cumi)"
+            placeholder="Cari produk… (mis. sambal bawang, paket hemat)"
             className="h-10"
           />
           <Button type="submit" className="h-10 bg-chili-600 px-4 hover:bg-chili-700">

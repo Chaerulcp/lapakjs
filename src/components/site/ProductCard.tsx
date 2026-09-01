@@ -4,7 +4,11 @@ import type { Product } from "@prisma/client";
 import { Badge } from "@/components/ui/badge";
 import { imageUrl, formatRupiah } from "@/lib/format";
 
-/** Label ramah untuk slug kategori dari DB lama. */
+/**
+ * Label ramah untuk slug kategori.
+ * Map di bawah berisi kategori dari data demo (tema sambal) —
+ * tambahkan/ubah sesuai kategori produk tokomu sendiri.
+ */
 export function kategoriLabel(kategori: string): string {
   const map: Record<string, string> = {
     "sambal-bawang": "Sambal Bawang",

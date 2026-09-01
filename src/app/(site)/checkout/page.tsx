@@ -6,12 +6,13 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/db";
 import { getCartLines } from "@/lib/cart";
 import { formatRupiah } from "@/lib/format";
+import { SITE } from "@/lib/site";
 import CheckoutForm from "@/components/site/CheckoutForm";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
   title: "Checkout",
-  description: "Selesaikan pesanan sambalmu di Sambal Mama Ana.",
+  description: `Selesaikan pesananmu di ${SITE.name}.`,
 };
 
 export default async function CheckoutPage() {

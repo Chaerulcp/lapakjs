@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { VerifyBox } from "./verify-box";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Verifikasi Email",
-  description: "Verifikasi email akun Sambal Mama Ana kamu.",
+  description: `Verifikasi email akun ${SITE.name} kamu.`,
 };
 
 export default async function VerifyEmailPage({

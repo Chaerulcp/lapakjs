@@ -117,7 +117,7 @@ export default async function ProdukDetailPage({
           </div>
           {isReseller ? (
             <p className="mt-1 text-sm font-medium text-leaf-600">
-              Harga khusus reseller. Terima kasih sudah jadi bagian keluarga Mama Ana! 💛
+              Harga khusus reseller. Terima kasih sudah jadi bagian dari kami! 💛
             </p>
           ) : (
             <p className="mt-1 text-sm text-muted-foreground">per botol ± 250 ml</p>

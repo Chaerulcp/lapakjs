@@ -1,15 +1,20 @@
 /**
- * Seed idempoten untuk database LIVE legacy Sambal Mama Ana.
+ * Seed idempoten untuk LapakJS — template toko online open-source.
  * - Memastikan ada admin yang sudah terverifikasi untuk login.
- * - Tidak pernah menghapus/mengubah data produk, pesanan, atau pengguna lama.
+ * - Menambahkan data demo (produk & konten) hanya jika tabel masih kosong.
+ * - Aman dijalankan berulang kali; tidak pernah menghapus/mengubah data lama.
+ *
+ * Kustomisasi: ganti email/password admin lewat variabel environment
+ * SEED_ADMIN_EMAIL dan SEED_ADMIN_PASSWORD, dan ubah data demo di bawah
+ * sesuai produk tokomu sendiri.
  */
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcryptjs");
 
 const prisma = new PrismaClient();
 
-const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || "admin@sambalmamaana.local";
-const ADMIN_PASSWORD = process.env.SEED_ADMIN_PASSWORD || "MamaAna!2026";
+const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || "admin@lapakjs.local";
+const ADMIN_PASSWORD = process.env.SEED_ADMIN_PASSWORD || "LapakJS!2026";
 
 async function main() {
   const admin = await prisma.user.findFirst({ where: { role: "admin" } });
@@ -26,10 +31,10 @@ async function main() {
     const hash = await bcrypt.hash(ADMIN_PASSWORD, 10);
     await prisma.user.create({
       data: {
-        nama: "Admin Sambal Mama Ana",
+        nama: "Admin LapakJS",
         email: ADMIN_EMAIL,
         password: hash,
-        alamat: "Dapur Mama Ana",
+        alamat: "Alamat Toko (ubah sesuai kebutuhan)",
         no_hp: "080000000000",
         role: "admin",
         status: "active",
@@ -46,7 +51,8 @@ async function main() {
     prisma.content.count(),
   ]);
 
-  // Data contoh (hanya jika tabel masih kosong — DB legacy tidak punya produk).
+  // Data demo toko contoh (bertema sambal) — hanya jika tabel masih kosong.
+  // Ganti dengan produk tokomu sendiri atau biarkan sebagai contoh.
   if (products === 0) {
     const demo = [
       { nama: "Sambal Bawang Original", kategori: "sambal-bawang", harga: 25000, harga_reseller: 20000, stok: 50, foto: "uploads/products/683dfdef85ce8.jpg", deskripsi: "Sambal bawang pedas nampol dengan bawang merah goreng renyah. Digoreng segar setiap hari tanpa pengawet. Cocok dengan nasi hangat, ayam goreng, dan tahu tempe." },
@@ -64,8 +70,8 @@ async function main() {
   if (contents === 0) {
     await prisma.content.createMany({
       data: [
-        { judul: "Rahasia Pedasnya Sambal Mama Ana", isi: "Semua sambal kami dibuat segar setiap hari dari cabai rawit merah pilihan yang dipetik langsung dari petani lokal. Tanpa pengawet, tanpa pewarna buatan — hanya bahan dapur asli dan resep warisan keluarga.", gambar: "uploads/products/683dfdef85ce8.jpg", penulis: "Mama Ana" },
-        { judul: "Cara Pesan dan Pembayaran", isi: "Tambahkan sambal favoritmu ke keranjang, isi alamat pengiriman, lalu pilih metode pembayaran transfer bank. Unggah bukti transfer di halaman pesanan, dan tim kami akan memverifikasi pembayaranmu secepat mungkin.", penulis: "Admin" },
+        { judul: "Rahasia Dapur Kami", isi: "Semua produk kami dibuat dari bahan pilihan berkualitas. Tanpa pengawet, tanpa pewarna buatan — hanya bahan terbaik dan resep yang terus kami jaga.", gambar: "uploads/products/683dfdef85ce8.jpg", penulis: "Tim Toko" },
+        { judul: "Cara Pesan dan Pembayaran", isi: "Tambahkan produk favoritmu ke keranjang, isi alamat pengiriman, lalu pilih metode pembayaran transfer bank. Unggah bukti transfer di halaman pesanan, dan tim kami akan memverifikasi pembayaranmu secepat mungkin.", penulis: "Admin" },
       ],
     });
     console.log("[seed] Konten contoh ditambahkan.");

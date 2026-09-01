@@ -5,13 +5,14 @@ import { AdminHeader } from "@/components/admin/AdminHeader";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
-    default: "Admin | Sambal Mama Ana",
-    template: "%s | Admin Sambal Mama Ana",
+    default: `Admin | ${SITE.name}`,
+    template: `%s | Admin ${SITE.name}`,
   },
-  description: "Panel administrasi toko Sambal Mama Ana.",
+  description: `Panel administrasi toko ${SITE.name}.`,
   robots: { index: false, follow: false },
 };
 

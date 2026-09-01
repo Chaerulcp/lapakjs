@@ -27,7 +27,7 @@ export async function addToCartAction(formData: FormData): Promise<CartActionRes
   revalidateSite();
 
   return added
-    ? { ok: true, message: "Ditambahkan ke keranjang. Pedasnya siap dikirim! 🌶️" }
+    ? { ok: true, message: "Ditambahkan ke keranjang. Pesananmu siap diproses! 🛍️" }
     : { ok: false, message: "Maaf, produk tidak tersedia atau stok sedang habis." };
 }
 

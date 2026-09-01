@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { sendMail, emailLayout } from "@/lib/mailer";
+import { SITE } from "@/lib/site";
 import { ACTIVITY_TYPES, logActivity } from "@/lib/activity";
 
 function appUrl(): string {
@@ -50,7 +51,7 @@ export async function POST(req: Request) {
   const link = `${appUrl()}/reset-password?token=${token}`;
   const sent = await sendMail(
     email,
-    "Atur ulang password kamu — Sambal Mama Ana 🌶️",
+    `Atur ulang password kamu — ${SITE.name} ${SITE.emoji}`,
     emailLayout(
       "Atur Ulang Password",
       `<p>Halo <strong>${user.nama}</strong>,</p>

@@ -3,13 +3,14 @@ import type { Metadata } from "next";
 import { ArrowRight, ShoppingCart } from "lucide-react";
 import { getCartLines } from "@/lib/cart";
 import { formatRupiah } from "@/lib/format";
+import { SITE } from "@/lib/site";
 import CartItemRow from "@/components/site/CartItemRow";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
   title: "Keranjang",
-  description: "Keranjang belanja Sambal Mama Ana.",
+  description: `Keranjang belanja ${SITE.name}.`,
 };
 
 export default async function KeranjangPage() {

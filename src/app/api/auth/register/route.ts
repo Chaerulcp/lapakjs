@@ -4,6 +4,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { hashPassword } from "@/lib/password";
 import { sendMail, emailLayout } from "@/lib/mailer";
+import { SITE } from "@/lib/site";
 import { ACTIVITY_TYPES, logActivity } from "@/lib/activity";
 
 const registerSchema = z.object({
@@ -65,11 +66,11 @@ export async function POST(req: Request) {
   const link = `${appUrl()}/verify-email?token=${verificationToken}&email=${encodeURIComponent(email)}`;
   const sent = await sendMail(
     email,
-    "Verifikasi email kamu — Sambal Mama Ana 🌶️",
+    `Verifikasi email kamu — ${SITE.name} ${SITE.emoji}`,
     emailLayout(
       "Verifikasi Email Kamu",
       `<p>Halo <strong>${nama}</strong>,</p>
-       <p>Terima kasih sudah mendaftar di Sambal Mama Ana! Klik tombol di bawah untuk mengaktifkan akunmu:</p>
+       <p>Terima kasih sudah mendaftar di ${SITE.name}! Klik tombol di bawah untuk mengaktifkan akunmu:</p>
        <p style="margin:24px 0"><a href="${link}" style="background:#a81c0d;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold">Verifikasi Email</a></p>
        <p>Atau salin tautan ini ke browser:<br><a href="${link}">${link}</a></p>
        <p>Tautan ini hanya bisa dipakai satu kali. Jika kamu tidak mendaftar, abaikan email ini.</p>`

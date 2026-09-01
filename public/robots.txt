@@ -1,0 +1,18 @@
+# robots.txt — Sambal Mama Ana
+# CATATAN: sesuaikan domain sitemap dengan domain produksi.
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /verify-email
+Disallow: /keranjang
+Disallow: /checkout
+Disallow: /pesanan
+
+Sitemap: https://www.sambalmamaana.com/sitemap.xml

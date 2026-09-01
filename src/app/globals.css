@@ -1,13 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-jetbrains);
+  --font-heading: var(--font-brikolage);
+  --font-display: var(--font-brikolage);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -37,79 +40,82 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 :root {
+  --background: #fffdf8;
+  --foreground: #211512;
+  --card: #ffffff;
+  --card-foreground: #211512;
+  --popover: #ffffff;
+  --popover-foreground: #211512;
+  --primary: #a81c0d;
+  --primary-foreground: #fff7ef;
+  --secondary: #f7ede0;
+  --secondary-foreground: #4a2c1d;
+  --muted: #f6efe5;
+  --muted-foreground: #7a6a5a;
+  --accent: #fbe9d6;
+  --accent-foreground: #8c160a;
+  --destructive: #b42318;
+  --border: #ebdfd1;
+  --input: #ebdfd1;
+  --ring: #e8590c;
+  --chart-1: #a81c0d;
+  --chart-2: #e8590c;
+  --chart-3: #f7b32b;
+  --chart-4: #3e6b3c;
+  --chart-5: #211512;
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: #fff9f2;
+  --sidebar-foreground: #211512;
+  --sidebar-primary: #a81c0d;
+  --sidebar-primary-foreground: #fff7ef;
+  --sidebar-accent: #f6e7d8;
+  --sidebar-accent-foreground: #8c160a;
+  --sidebar-border: #ebdfd1;
+  --sidebar-ring: #e8590c;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #171110;
+  --foreground: #f5ede4;
+  --card: #211816;
+  --card-foreground: #f5ede4;
+  --popover: #211816;
+  --popover-foreground: #f5ede4;
+  --primary: #f4581c;
+  --primary-foreground: #fff7ef;
+  --secondary: #2e221e;
+  --secondary-foreground: #f5ede4;
+  --muted: #2e221e;
+  --muted-foreground: #b7a896;
+  --accent: #3a241c;
+  --accent-foreground: #ffc9a8;
+  --destructive: #e5484d;
+  --border: #3a2c25;
+  --input: #3a2c25;
+  --ring: #f4581c;
+  --chart-1: #f4581c;
+  --chart-2: #ffc94d;
+  --chart-3: #e15b45;
+  --chart-4: #4c8249;
+  --chart-5: #b7a896;
+  --sidebar: #1d1512;
+  --sidebar-foreground: #f5ede4;
+  --sidebar-primary: #f4581c;
+  --sidebar-primary-foreground: #fff7ef;
+  --sidebar-accent: #3a241c;
+  --sidebar-accent-foreground: #ffc9a8;
+  --sidebar-border: #3a2c25;
+  --sidebar-ring: #f4581c;
 }
 
 @layer base {
@@ -119,4 +125,50 @@
   body {
     @apply bg-background text-foreground;
   }
+  html {
+    @apply font-sans;
+  }
+
+/* ===== Brand palette: Sambal Mama Ana ===== */
+@theme {
+  --color-chili-50: #fef3f1;
+  --color-chili-100: #fde3df;
+  --color-chili-200: #fac4bc;
+  --color-chili-300: #f29384;
+  --color-chili-400: #e15b45;
+  --color-chili-500: #c22511;
+  --color-chili-600: #a81c0d;
+  --color-chili-700: #8c160a;
+  --color-chili-800: #6e1108;
+  --color-chili-900: #55100a;
+  --color-ember-400: #ff8a4a;
+  --color-ember-500: #f4581c;
+  --color-ember-600: #e8590c;
+  --color-mango-300: #ffde8a;
+  --color-mango-400: #ffc94d;
+  --color-mango-500: #f7b32b;
+  --color-leaf-500: #4c8249;
+  --color-leaf-600: #3e6b3c;
+  --color-paper: #fffdf8;
+  --color-ink: #211512;
+}
+
+/* Ticker "pedas" — elemen signature halaman depan */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
 }

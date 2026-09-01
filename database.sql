@@ -1,4 +1,4 @@
--- MariaDB dump 10.19  Distrib 10.11.2-MariaDB, for Win64 (AMD64)
+﻿-- MariaDB dump 10.19  Distrib 10.11.2-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: sambal_mama_ana
 -- ------------------------------------------------------

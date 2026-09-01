@@ -1,0 +1,205 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  admin
+  reseller
+  pelanggan
+}
+
+enum UserStatus {
+  active
+  inactive
+}
+
+enum OrderStatus {
+  menunggu
+  diproses
+  dikirim
+  selesai
+  dibatalkan
+}
+
+enum PaymentStatus {
+  menunggu
+  dikonfirmasi
+  gagal
+}
+
+enum CommissionStatus {
+  pending
+  paid
+}
+
+enum SubscriberStatus {
+  active
+  unsubscribed
+}
+
+model User {
+  id                 Int        @id @default(autoincrement())
+  nama               String
+  email              String     @unique
+  password           String
+  alamat             String     @db.Text
+  no_hp              String
+  role               UserRole
+  status             UserStatus @default(active)
+  is_verified        Boolean?   @default(false) @db.TinyInt
+  verification_token String?
+  created_at         DateTime?  @default(now())
+  updated_at         DateTime?  @default(now()) @updatedAt
+
+  activityLogs       ActivityLog[]
+  orders             Order[]
+  paymentsVerified   Payment[]           @relation("PaymentVerifiedBy")
+  passwordResets     PasswordReset[]
+  testimonials       Testimonial[]
+  commissions        ResellerCommission[]
+  @@map("users")
+}
+
+model Product {
+  id             Int       @id @default(autoincrement())
+  nama           String
+  deskripsi      String    @db.Text
+  harga          Decimal   @db.Decimal(10, 2)
+  harga_reseller Decimal   @db.Decimal(10, 2)
+  stok           Int       @default(0)
+  foto           String
+  kategori       String
+  created_at     DateTime? @default(now())
+  updated_at     DateTime? @default(now()) @updatedAt
+
+  orderItems   OrderItem[]
+  testimonials Testimonial[]
+  @@map("products")
+}
+
+model Order {
+  id                Int         @id @default(autoincrement())
+  user_id           Int
+  tanggal           DateTime    @default(now())
+  total             Decimal     @db.Decimal(10, 2)
+  status            OrderStatus @default(menunggu)
+  alamat            String      @db.Text
+  metode_pembayaran String
+  tanggal_kirim     DateTime?   @db.Date
+  created_at        DateTime?   @default(now())
+  updated_at        DateTime?   @default(now()) @updatedAt
+
+  user        User                 @relation(fields: [user_id], references: [id])
+  items       OrderItem[]
+  payments    Payment[]
+  commissions ResellerCommission[]
+  @@map("orders")
+}
+
+model OrderItem {
+  id         Int       @id @default(autoincrement())
+  order_id   Int
+  product_id Int
+  jumlah     Int
+  harga      Decimal   @db.Decimal(10, 2)
+  created_at DateTime? @default(now())
+
+  order   Order   @relation(fields: [order_id], references: [id])
+  product Product @relation(fields: [product_id], references: [id])
+  @@map("order_items")
+}
+
+model Payment {
+  id             Int           @id @default(autoincrement())
+  order_id       Int
+  metode         String
+  status         PaymentStatus @default(menunggu)
+  bukti_transfer String?
+  tanggal        DateTime      @default(now())
+  notes          String?       @db.Text
+  verified_at    DateTime?
+  verified_by    Int?
+  created_at     DateTime?     @default(now())
+  updated_at     DateTime?     @default(now()) @updatedAt
+
+  order      Order @relation(fields: [order_id], references: [id])
+  verifiedBy User? @relation("PaymentVerifiedBy", fields: [verified_by], references: [id])
+  @@map("payments")
+}
+
+model Content {
+  id         Int       @id @default(autoincrement())
+  judul      String
+  isi        String    @db.Text
+  gambar     String?
+  video      String?
+  tanggal    DateTime  @default(now())
+  penulis    String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now()) @updatedAt
+  @@map("contents")
+}
+
+model Subscriber {
+  id         Int              @id @default(autoincrement())
+  email      String
+  status     SubscriberStatus @default(active)
+  created_at DateTime?        @default(now())
+  updated_at DateTime?        @default(now()) @updatedAt
+  @@map("subscribers")
+}
+
+model Testimonial {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  product_id Int
+  isi        String    @db.Text
+  rating     Int
+  tanggal    DateTime  @default(now())
+  created_at DateTime? @default(now())
+
+  user    User    @relation(fields: [user_id], references: [id])
+  product Product @relation(fields: [product_id], references: [id])
+  @@map("testimonials")
+}
+
+model ActivityLog {
+  id            Int       @id @default(autoincrement())
+  user_id       Int
+  activity_type String
+  description   String    @db.Text
+  created_at    DateTime? @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+  @@map("activity_logs")
+}
+
+model PasswordReset {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  token      String
+  expires_at DateTime
+  created_at DateTime? @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+  @@map("password_resets")
+}
+
+model ResellerCommission {
+  id          Int              @id @default(autoincrement())
+  reseller_id Int
+  order_id    Int
+  komisi      Decimal          @db.Decimal(10, 2)
+  status      CommissionStatus @default(pending)
+  created_at  DateTime?        @default(now())
+  updated_at  DateTime?        @default(now()) @updatedAt
+
+  reseller User  @relation(fields: [reseller_id], references: [id])
+  order    Order @relation(fields: [order_id], references: [id])
+  @@map("reseller_commissions")
+}

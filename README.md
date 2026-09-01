@@ -160,11 +160,13 @@ public/uploads/        # media hasil unggahan
 
 ## Kontribusi
 
-1. Fork repo ini dan buat branch fitur (`git checkout -b feature/nama-fitur`).
+Lihat [CONTRIBUTING.md](CONTRIBUTING.md) untuk panduan lengkap. Singkatnya:
+
+1. Fork repo ini dan buat branch fitur (`git checkout -b feat/nama-fitur`).
 2. Pastikan `npm run lint` dan `npm run build` lolos.
 3. Ajukan pull request dengan deskripsi perubahan.
 
-Untuk bug atau usulan fitur, silakan buka issue.
+Untuk bug atau usulan fitur, silakan buka [issue](../../issues) atau [diskusi](../../discussions).
 
 ## Lisensi
 

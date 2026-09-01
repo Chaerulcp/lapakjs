@@ -8,7 +8,7 @@
  *
  * Tips kustomisasi lanjutan:
  * - Warna tema  → `src/app/globals.css` (bagian "Brand palette")
- * - Data contoh → `prisma/seed.cjs` (produk, konten, admin)
+ * - Data contoh → `prisma/seed.mjs` (produk, konten, admin)
  * - SEO         → `src/app/layout.tsx` (otomatis mengikuti file ini)
  */
 export const SITE = {

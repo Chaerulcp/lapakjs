@@ -44,7 +44,7 @@ export default async function KeranjangPage() {
         Keranjang Belanja
       </h1>
       <p className="mt-1 text-muted-foreground">
-        {jumlahItem} item menanti untuk dikirim ke dapurmu. 🌶️
+        {jumlahItem} item menanti untuk dikirim.
       </p>
 
       <div className="mt-8 grid items-start gap-8 lg:grid-cols-[1fr_340px]">

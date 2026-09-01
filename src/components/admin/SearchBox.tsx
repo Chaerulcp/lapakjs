@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,12 +10,16 @@ function SearchBoxInner({ placeholder }: { placeholder?: string }) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
-  const [value, setValue] = useState(params.get("q") ?? "");
+  const qParam = params.get("q") ?? "";
+  const [value, setValue] = useState(qParam);
 
   // Sinkronkan kembali saat navigasi (mis. pindah halaman/filter lain).
-  useEffect(() => {
-    setValue(params.get("q") ?? "");
-  }, [params]);
+  // Pola resmi React: sesuaikan state saat props berubah ketika render.
+  const [prevQ, setPrevQ] = useState(qParam);
+  if (prevQ !== qParam) {
+    setPrevQ(qParam);
+    setValue(qParam);
+  }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

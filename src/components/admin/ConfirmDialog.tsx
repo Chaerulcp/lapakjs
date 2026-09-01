@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition, type ReactNode } from "react";
+import { useState, useTransition, type ReactNode } from "react";
 import { toast } from "sonner";
 import type { ActionResult } from "@/app/admin/actions";
 import {
@@ -35,22 +35,17 @@ export function ConfirmDialog({
   fields?: Record<string, string | number>;
 }) {
   const [open, setOpen] = useState(false);
-  const [result, setResult] = useState<ActionResult | null>(null);
   const [pending, startTransition] = useTransition();
-
-  useEffect(() => {
-    if (!result?.message) return;
-    if (result.ok) {
-      toast.success(result.message);
-      setOpen(false);
-    } else {
-      toast.error(result.message);
-    }
-  }, [result]);
 
   function submit(formData: FormData) {
     startTransition(async () => {
-      setResult(await action(formData));
+      const result = await action(formData);
+      if (result.ok) {
+        if (result.message) toast.success(result.message);
+        setOpen(false);
+      } else if (result.message) {
+        toast.error(result.message);
+      }
     });
   }
 

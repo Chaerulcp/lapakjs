@@ -14,9 +14,12 @@ export function OrderStatusForm({ orderId, status }: { orderId: number; status: 
   const [pending, startTransition] = useTransition();
 
   // Sinkronkan bila data server berubah (mis. setelah aksi lain).
-  useEffect(() => {
+  // Pola resmi React: sesuaikan state saat props berubah ketika render.
+  const [prevStatus, setPrevStatus] = useState(status);
+  if (prevStatus !== status) {
+    setPrevStatus(status);
     setValue(status);
-  }, [status]);
+  }
 
   useEffect(() => {
     if (result?.message) {

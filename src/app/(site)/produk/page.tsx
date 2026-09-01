@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Search } from "lucide-react";
+import Link from "next/link";
+import { Search, SearchX } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { SITE } from "@/lib/site";
 import ProductCard, { kategoriLabel } from "@/components/site/ProductCard";
@@ -125,7 +126,7 @@ export default async function ProdukPage({
         </div>
       ) : (
         <div className="mt-10 rounded-2xl border border-dashed border-border bg-card p-12 text-center">
-          <p className="text-4xl">🌶️</p>
+          <SearchX className="mx-auto size-10 text-muted-foreground" aria-hidden />
           <h2 className="mt-3 font-display text-lg font-bold text-ink">
             Tidak ada produk yang cocok
           </h2>
@@ -133,7 +134,7 @@ export default async function ProdukPage({
             Coba kata kunci lain atau lihat semua produk kami.
           </p>
           <Button asChild variant="outline" className="mt-5">
-            <a href="/produk">Lihat Semua Produk</a>
+            <Link href="/produk">Lihat Semua Produk</Link>
           </Button>
         </div>
       )}

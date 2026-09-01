@@ -80,7 +80,7 @@ Sebagian besar penyesuaian merek cukup dilakukan pada satu file:
 | Warna dan tipografi tema | `src/app/globals.css` (CSS variables) |
 | Favicon | `public/favicon.ico` |
 | Label kategori produk | `kategoriLabel()` di `src/components/site/ProductCard.tsx` |
-| Data contoh produk dan konten | `prisma/seed.cjs` |
+| Data contoh produk dan konten | `prisma/seed.mjs` |
 | Domain publik (email, sitemap, robots) | `APP_URL` di `.env` |
 
 Metadata SEO di `src/app/layout.tsx` otomatis mengikuti nilai di `src/lib/site.ts`.
@@ -137,7 +137,7 @@ src/
 └── types/             # tipe bersama
 prisma/
 ├── schema.prisma      # skema database
-└── seed.cjs           # data contoh
+└── seed.mjs           # data contoh
 public/uploads/        # media hasil unggahan
 ```
 

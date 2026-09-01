@@ -225,7 +225,7 @@ export default async function PesananDetailPage({
               </p>
             ) : (
               <p className="mt-4 rounded-xl bg-leaf-500/10 p-3.5 text-sm text-leaf-600">
-                Pembayaran sudah beres. Terima kasih! 🌶️
+                Pembayaran sudah beres. Terima kasih!
               </p>
             )}
           </div>

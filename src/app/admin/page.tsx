@@ -258,7 +258,7 @@ export default async function AdminDashboardPage() {
           <CardContent>
             {lowStock.length === 0 ? (
               <p className="py-6 text-center text-sm text-muted-foreground">
-                Semua stok aman. Mantap! 🌶️
+                Semua stok aman. Mantap!
               </p>
             ) : (
               <ul className="space-y-2">

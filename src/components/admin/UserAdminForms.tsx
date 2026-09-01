@@ -47,9 +47,12 @@ export function UserRoleForm({
   const [value, setValue] = useState(role);
   const { pending, startTransition, setResult } = useActionToast();
 
-  useEffect(() => {
+  // Sinkronkan bila data server berubah (pola resmi React: state mengikuti props).
+  const [prevRole, setPrevRole] = useState(role);
+  if (prevRole !== role) {
+    setPrevRole(role);
     setValue(role);
-  }, [role]);
+  }
 
   function handleChange(next: string) {
     setValue(next);
@@ -92,9 +95,12 @@ export function UserStatusForm({
   const [value, setValue] = useState(status);
   const { pending, startTransition, setResult } = useActionToast();
 
-  useEffect(() => {
+  // Sinkronkan bila data server berubah (pola resmi React: state mengikuti props).
+  const [prevStatus, setPrevStatus] = useState(status);
+  if (prevStatus !== status) {
+    setPrevStatus(status);
     setValue(status);
-  }, [status]);
+  }
 
   function handleChange(next: string) {
     setValue(next);

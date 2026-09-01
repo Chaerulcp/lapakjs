@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition, type ReactNode } from "react";
+import { useState, useTransition, type ReactNode } from "react";
 import { toast } from "sonner";
 import { verifyPaymentAction, type ActionResult } from "@/app/admin/actions";
 import { Button } from "@/components/ui/button";
@@ -40,13 +40,6 @@ export function PaymentVerifyDialog({
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
-  useEffect(() => {
-    if (!open) {
-      setError(null);
-      setCatatan("");
-    }
-  }, [open]);
-
   function submit(formData: FormData) {
     setError(null);
     formData.set("id", String(paymentId));
@@ -64,7 +57,17 @@ export function PaymentVerifyDialog({
   }
 
   return (
-    <Dialog open={open} onOpenChange={(next) => !pending && setOpen(next)}>
+    <Dialog
+      open={open}
+      onOpenChange={(next) => {
+        if (pending) return;
+        setOpen(next);
+        if (!next) {
+          setError(null);
+          setCatatan("");
+        }
+      }}
+    >
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>

@@ -8,8 +8,8 @@
  * SEED_ADMIN_EMAIL dan SEED_ADMIN_PASSWORD, dan ubah data demo di bawah
  * sesuai produk tokomu sendiri.
  */
-const { PrismaClient } = require("@prisma/client");
-const bcrypt = require("bcryptjs");
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 

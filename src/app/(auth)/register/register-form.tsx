@@ -74,7 +74,7 @@ export function RegisterForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-display text-2xl">Buat akun baru 🌶️</CardTitle>
+        <CardTitle className="font-display text-2xl">Buat akun baru</CardTitle>
         <CardDescription>
           Gratis selamanya. Harga spesial menanti para reseller.
         </CardDescription>

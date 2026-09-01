@@ -165,7 +165,7 @@ export default async function ProdukDetailPage({
           </div>
         ) : (
           <p className="mt-5 rounded-2xl border border-dashed border-border bg-card p-8 text-center text-sm text-muted-foreground">
-            Belum ada ulasan. Jadilah yang pertama mencicipi! 🌶️
+            Belum ada ulasan. Jadilah yang pertama memberikan ulasan!
           </p>
         )}
       </section>
